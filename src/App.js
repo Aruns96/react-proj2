@@ -1,24 +1,27 @@
-import logo from './logo.svg';
+
 import './App.css';
+import Cart from './Components/Cart/Cart';
+import MedicineForm from './Components/MedicineForm/MedicineForm';
+import MedicineList from './Components/MedicineList/MedicineList';
+import CartProvider from './Store/CartProvider';
+import React,{useState} from 'react';
 
 function App() {
+  const[showCart,setShowCart] = useState(false)
+  const showCartHandler =()=>{
+    setShowCart(true)
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <CartProvider>
+    <button onClick={showCartHandler}>Cart</button>
+    {showCart && <Cart/>}
+    
+     <MedicineForm/>
+     <MedicineList/>
+    </CartProvider>
+    </>
+   
   );
 }
 
